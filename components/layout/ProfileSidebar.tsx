@@ -6,7 +6,7 @@ export function ProfileSidebar() {
         <aside className="w-80">
             <div className="flex flex-col items-center text-center space-y-4">
                 {/* Profile Avatar */}
-                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white text-5xl font-bold">
+                <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white text-5xl font-bold">
                     SR
                 </div>
 
