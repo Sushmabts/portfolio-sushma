@@ -13,7 +13,7 @@ import { Blog } from "@/components/sections/Blog"
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, ease: "easeOut" }
+  transition: { duration: 0.5 }
 }
 
 export default function Home() {
@@ -50,28 +50,28 @@ export default function Home() {
 
               <motion.div
                 {...fadeInUp}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
               >
                 <Skills />
               </motion.div>
 
               <motion.div
                 {...fadeInUp}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <Projects limit={4} />
               </motion.div>
 
               <motion.div
                 {...fadeInUp}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
               >
                 <Education />
               </motion.div>
 
               <motion.div
                 {...fadeInUp}
-                transition={{ duration: 0.5, ease: "easeOut", delay: 0.4 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
               >
                 <Blog limit={2} />
               </motion.div>
