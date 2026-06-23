@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sushma Ravichandran — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ivory: #F5F0E8;
+    --ivory-dark: #EDE7D9;
+    --ivory-mid: #E4DDD0;
+    --forest: #1A3526;
+    --forest-mid: #234733;
+    --forest-light: #2F5E42;
+    --sage: #6B8F71;
+    --sage-light: #A8C4AB;
+    --rust: #B85C38;
+    --ink: #1C1A17;
+    --ink-mid: #3D3B36;
+    --ink-dim: #7A7568;
+    --white: #FDFAF5;
+    --gold-border: #E8C84A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 52px;
+    height: 58px;
+    background: rgba(245,240,232,0.93);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--ivory-mid);
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--forest);
+  }
+
+  .nav-right { display: flex; align-items: center; gap: 28px; }
+
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--forest); }
+
+  .nav-resume-btn {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--forest);
+    padding: 7px 16px;
+    border-radius: 3px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-resume-btn:hover { background: var(--forest-light); }
+
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 80px 52px 60px;
+    gap: 64px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--rust);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(48px, 6vw, 76px);
+    font-weight: 400;
+    color: var(--forest);
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+
+  h1 em { font-style: italic; color: var(--rust); }
+
+  .hero-sub {
+    font-size: 16px;
+    color: var(--ink-mid);
+    max-width: 440px;
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+  .btn-primary {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--forest);
+    padding: 11px 26px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--forest-light); transform: translateY(-1px); }
+
+  .btn-ghost {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--forest);
+    border: 1.5px solid var(--sage-light);
+    padding: 10px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+
+  .btn-ghost:hover { border-color: var(--forest); transform: translateY(-1px); }
+
+  .btn-resume {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--rust);
+    border: 1.5px solid var(--rust);
+    padding: 10px 20px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .btn-resume:hover { background: var(--rust); color: var(--white); transform: translateY(-1px); }
+
+  .hero-right { display: flex; flex-direction: column; gap: 14px; }
+
+  .hero-stat {
+    background: var(--forest);
+    border-radius: 6px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+
+  .hero-stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 38px;
+    color: var(--ivory);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .hero-stat-label { font-size: 13px; color: var(--sage-light); line-height: 1.4; }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 14px;
+    background: var(--ivory-dark);
+    border-radius: 6px;
+    border: 1px solid var(--ivory-mid);
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--forest-mid);
+    background: var(--white);
+    border: 1px solid var(--ivory-mid);
+    padding: 3px 9px;
+    border-radius: 2px;
+  }
+
+  section {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 80px 52px;
+    border-top: 1px solid var(--ivory-mid);
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--rust);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 400;
+    color: var(--forest);
+    letter-spacing: -0.02em;
+    margin-bottom: 48px;
+  }
+
+  .about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 56px; align-items: start; }
+
+  .about-text p { color: var(--ink-mid); margin-bottom: 16px; font-size: 15.5px; }
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .about-certs { display: flex; flex-direction: column; gap: 10px; }
+
+  .cert-item {
+    background: var(--white);
+    border: 1px solid var(--ivory-mid);
+    border-left: 3px solid var(--forest);
+    padding: 12px 16px;
+    border-radius: 0 4px 4px 0;
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.4;
+  }
+
+  .cert-item strong { display: block; font-weight: 600; color: var(--forest); font-size: 12px; margin-bottom: 2px; }
+
+  .timeline { display: flex; flex-direction: column; position: relative; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--forest), var(--sage-light));
+  }
+
+  .timeline-item { padding-left: 32px; position: relative; padding-bottom: 48px; }
+  .timeline-item:last-child { padding-bottom: 0; }
+
+  .timeline-dot {
+    position: absolute; left: 0; top: 7px;
+    width: 13px; height: 13px;
+    border-radius: 50%;
+    background: var(--ivory);
+    border: 2px solid var(--forest);
+  }
+
+  .timeline-dot.dim { border-color: var(--sage); }
+
+  .timeline-meta { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--ink-dim); margin-bottom: 5px; letter-spacing: 0.04em; }
+
+  .timeline-role { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--forest); margin-bottom: 2px; }
+
+  .timeline-company { font-size: 13px; color: var(--rust); margin-bottom: 14px; font-weight: 500; }
+
+  .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+
+  .timeline-bullets li { font-size: 14px; color: var(--ink-mid); padding-left: 14px; position: relative; line-height: 1.6; }
+  .timeline-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--sage); }
+
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
+
+  .project-card-capstone {
+    grid-column: 1 / -1;
+    background: var(--forest);
+    border: 2px solid var(--gold-border);
+    border-radius: 10px;
+    padding: 32px 36px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .capstone-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--gold-border);
+    background: rgba(232,200,74,0.12);
+    border: 1px solid rgba(232,200,74,0.35);
+    padding: 4px 10px;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  .capstone-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--ivory); margin-bottom: 12px; line-height: 1.25; }
+
+  .capstone-desc { font-size: 14px; color: var(--sage-light); line-height: 1.65; margin-bottom: 18px; }
+
+  .capstone-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+
+  .capstone-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--sage-light); border: 1px solid rgba(168,196,171,0.3); padding: 2px 8px; border-radius: 2px; }
+
+  .capstone-advisor { font-size: 12px; color: var(--sage-light); font-style: italic; }
+
+  .capstone-right { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+
+  .capstone-metric { background: rgba(255,255,255,0.06); border: 1px solid rgba(168,196,171,0.2); border-radius: 6px; padding: 14px 18px; }
+
+  .capstone-metric-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--sage-light); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+
+  .capstone-metric-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .capstone-metric-stat { text-align: center; }
+
+  .capstone-metric-num { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--gold-border); line-height: 1; }
+
+  .capstone-metric-sub { font-size: 10px; color: var(--sage-light); margin-top: 2px; }
+
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--ivory-mid);
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .project-card:hover { border-color: var(--sage); transform: translateY(-3px); }
+
+  .project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+
+  .project-num { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--ivory-mid); line-height: 1; }
+
+  .project-links { display: flex; gap: 12px; }
+
+  .project-links a { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--sage); text-decoration: none; border-bottom: 1px solid transparent; transition: color 0.2s, border-color 0.2s; }
+  .project-links a:hover { color: var(--forest); border-color: var(--forest); }
+
+  .link-pending { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--ink-dim); font-style: italic; }
+
+  .project-title { font-family: 'DM Serif Display', serif; font-size: 16px; color: var(--forest); margin-bottom: 10px; line-height: 1.3; }
+
+  .project-bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; margin-bottom: 16px; flex: 1; }
+
+  .project-bullets li { font-size: 13px; color: var(--ink-mid); padding-left: 12px; position: relative; line-height: 1.5; }
+  .project-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--rust); font-size: 9px; top: 4px; }
+
+  .project-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+  .project-tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--sage); background: rgba(107,143,113,0.1); border: 1px solid rgba(107,143,113,0.25); padding: 2px 7px; border-radius: 2px; }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+
+  .skill-group { background: var(--white); border: 1px solid var(--ivory-mid); border-radius: 6px; padding: 18px 20px; }
+
+  .skill-group-title { font-family: 'DM Serif Display', serif; font-size: 14px; color: var(--forest); margin-bottom: 10px; }
+
+  .skill-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+
+  .skill-list li { font-size: 13px; color: var(--ink-mid); padding-left: 12px; position: relative; }
+  .skill-list li::before { content: '·'; position: absolute; left: 0; color: var(--rust); }
+
+  #contact { text-align: center; }
+  #contact h2 { margin-bottom: 12px; }
+
+  .contact-sub { font-size: 15px; color: var(--ink-dim); margin-bottom: 32px; max-width: 460px; margin-left: auto; margin-right: auto; }
+
+  .contact-links { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+
+  .contact-link { font-size: 13px; font-weight: 500; color: var(--forest); text-decoration: none; border-bottom: 1.5px solid var(--sage-light); padding-bottom: 2px; transition: border-color 0.2s; }
+  .contact-link:hover { border-color: var(--forest); }
+
+  footer { text-align: center; padding: 24px 52px; font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--ink-dim); border-top: 1px solid var(--ivory-mid); }
+
+  @media (max-width: 720px) {
+    nav { padding: 0 16px; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; padding: 100px 20px 60px; }
+    .hero-right { display: none; }
+    section { padding-left: 20px; padding-right: 20px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .project-card-capstone { grid-template-columns: 1fr; }
+    footer { padding-left: 20px; padding-right: 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Sushma Ravichandran</div>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="Sushma_Ravichandran_Resume.pdf" download="Sushma_Ravichandran_Resume.pdf" class="nav-resume-btn">↓ Resume</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="border-top: none;">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Full Stack Software Engineer · Open to Opportunities</div>
+    <h1>Software<br><em>Engineer</em></h1>
+    <p class="hero-sub">
+      I build scalable backends, intelligent AI pipelines, and clean frontends.
+      MS Computer Science at UW-Milwaukee. Previously at Virtusa, where I shipped
+      production systems processing 1M+ transactions/day for enterprise financial workflows.
+    </p>
+    <div class="hero-cta">
+      <a href="mailto:ravichandransushma4@gmail.com" class="btn-primary">Get in touch</a>
+      <a href="Sushma_Ravichandran_Resume.pdf" download="Sushma_Ravichandran_Resume.pdf" class="btn-resume">↓ Resume</a>
+      <a href="https://github.com/Sushmabts" target="_blank" class="btn-ghost">GitHub →</a>
+      <a href="https://www.linkedin.com/in/sushmaravichandran" target="_blank" class="btn-ghost">LinkedIn →</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat">
+      <div class="hero-stat-num">3</div>
+      <div class="hero-stat-label">years of professional<br>engineering experience</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">1M+</div>
+      <div class="hero-stat-label">transactions/day processed<br>across distributed systems</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">60%</div>
+      <div class="hero-stat-label">reduction in knowledge-search time via LLM integration</div>
+    </div>
+    <div class="hero-tags">
+      <span class="tag">Java</span>
+      <span class="tag">.NET / ASP.NET</span>
+      <span class="tag">Python</span>
+      <span class="tag">Spring Boot</span>
+      <span class="tag">React</span>
+      <span class="tag">LLM / RAG</span>
+      <span class="tag">AWS Certified</span>
+      <span class="tag">Apache Kafka</span>
+      <span class="tag">Docker · K8s</span>
+      <span class="tag">ML / Deep Learning</span>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">// about</div>
+  <h2>Who I am</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a full-stack software engineer with 3 years of professional experience at Virtusa building
+        enterprise-grade systems — microservices, event-driven architectures, RAG pipelines, NLP systems,
+        and React/Angular dashboards serving 8000+ users.
+      </p>
+      <p>
+        I integrated OpenAI APIs and built RAG pipelines using LangChain that cut knowledge-search time
+        by 60%. I led 60+ code reviews, mentored junior engineers, and maintained 85%+ code coverage
+        across core microservices. I care about clean architecture and systems that hold up in production.
+      </p>
+      <p>
+        Currently finishing my MS in Computer Science at UW-Milwaukee (May 2026), with coursework in
+        Machine Learning, NLP, Data Mining, Cybersecurity, and Intelligent User Interfaces.
+        My capstone built a multimodal ECG-based cardiac screening AI system.
+      </p>
+    </div>
+    <div class="about-certs">
+      <div class="cert-item"><strong>AWS Certified</strong>Developer – Associate</div>
+      <div class="cert-item"><strong>Oracle Certified</strong>Java SE 8 Programmer (OCJA)</div>
+      <div class="cert-item"><strong>ISTQB</strong>Foundation Level · Software Testing</div>
+      <div class="cert-item"><strong>Coursera</strong>Generative AI with Large Language Models</div>
+      <div class="cert-item"><strong>JPMorganChase</strong>Software Engineering Job Simulation</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">// experience</div>
+  <h2>Where I've worked</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">JAN 2026 – PRESENT</div>
+      <div class="timeline-role">Graduate Teaching Assistant & Grader</div>
+      <div class="timeline-company">University of Wisconsin-Milwaukee</div>
+      <ul class="timeline-bullets">
+        <li>Grading programming assignments for CS 482 — Rich Internet Applications (HTML, CSS, JS, jQuery, Python, Django)</li>
+        <li>Conducted code reviews and provided feedback for 40+ students on full-stack web projects</li>
+        <li>Reviewed frontend behavior, backend logic, and project completeness against detailed rubrics</li>
+        <li>Collaborated with the course instructor for fair and timely evaluation</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-meta">DEC 2021 – AUG 2024 · ~3 YRS</div>
+      <div class="timeline-role">Software Engineer</div>
+      <div class="timeline-company">Virtusa Corporation</div>
+      <ul class="timeline-bullets">
+        <li>Designed and deployed 10+ Spring Boot microservices processing 1M+ transactions and 200k+ API requests/day</li>
+        <li>Built secure REST APIs and GraphQL services with Spring Security, JWT, and RBAC for enterprise applications</li>
+        <li>Implemented event-driven architecture using Kafka across distributed microservices handling 50k+ messages/day</li>
+        <li>Developed React and Angular dashboards with D3.js visualizations used by 8000+ internal users</li>
+        <li>Integrated OpenAI APIs and built RAG pipelines with LangChain and vector search, cutting knowledge-search time by 60%</li>
+        <li>Optimized MySQL, PostgreSQL, and Oracle PL/SQL queries via indexing and tuning, reducing query latency by 40%</li>
+        <li>Built CI/CD pipelines using Jenkins and GitHub Actions automating Docker and Kubernetes deployments on AWS</li>
+        <li>Implemented monitoring with Prometheus and Grafana, improving production visibility and reducing incident response time</li>
+        <li>Conducted 60+ code reviews and mentored junior engineers; maintained 85%+ code coverage with JUnit and Mockito</li>
+        <li>Designed and maintained RESTful API contracts and Swagger documentation for 15+ services across 3 product teams</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">// projects</div>
+  <h2>Things I've built</h2>
+  <div class="projects-grid">
+
+    <!-- CAPSTONE -->
+    <div class="project-card-capstone">
+      <div>
+        <div class="capstone-badge">★ MS Capstone · UW-Milwaukee 2025</div>
+        <div class="capstone-title">Multimodal ECG-Based Heart Disease Prediction</div>
+        <div class="capstone-desc">
+          AI-powered cardiac screening system combining machine learning and deep learning on ECG data.
+          Signal-based pipeline: Random Forest trained on 51 engineered features from PTB-XL ECG recordings with clinical attributes.
+          Image-based pipeline: CNN trained on waveform images from MIT-BIH arrhythmia data.
+          Both unified in a real-time Streamlit app with confidence scoring and Low / Moderate / High risk stratification.
+          Prioritized Recall over Precision — designed for clinical screening where missing a case carries higher risk than a false positive.
+        </div>
+        <div class="capstone-tags">
+          <span class="capstone-tag">Python</span>
+          <span class="capstone-tag">Scikit-learn</span>
+          <span class="capstone-tag">TensorFlow / Keras</span>
+          <span class="capstone-tag">CNN</span>
+          <span class="capstone-tag">Random Forest</span>
+          <span class="capstone-tag">PTB-XL Dataset</span>
+          <span class="capstone-tag">MIT-BIH Dataset</span>
+          <span class="capstone-tag">Streamlit</span>
+          <span class="capstone-tag">AWS</span>
+        </div>
+        <div class="capstone-advisor">Advisor: Dr. Zeyun Yu · Dept. of Computer Science, UW-Milwaukee</div>
+      </div>
+      <div class="capstone-right">
+        <div class="capstone-metric">
+          <div class="capstone-metric-label">Random Forest (ECG + Clinical) — Best Model</div>
+          <div class="capstone-metric-row">
+            <div class="capstone-metric-stat">
+              <div class="capstone-metric-num">72.2%</div>
+              <div class="capstone-metric-sub">Accuracy</div>
+            </div>
+            <div class="capstone-metric-stat">
+              <div class="capstone-metric-num">75.7%</div>
+              <div class="capstone-metric-sub">F1-Score</div>
+            </div>
+            <div class="capstone-metric-stat">
+              <div class="capstone-metric-num">79.8%</div>
+              <div class="capstone-metric-sub">ROC-AUC</div>
+            </div>
+          </div>
+        </div>
+        <div class="capstone-metric">
+          <div class="capstone-metric-label">Logistic Regression Baseline</div>
+          <div class="capstone-metric-row">
+            <div class="capstone-metric-stat">
+              <div class="capstone-metric-num">69.3%</div>
+              <div class="capstone-metric-sub">Accuracy</div>
+            </div>
+            <div class="capstone-metric-stat">
+              <div class="capstone-metric-num">76.7%</div>
+              <div class="capstone-metric-sub">ROC-AUC</div>
+            </div>
+          </div>
+        </div>
+        <div class="capstone-metric">
+          <div class="capstone-metric-label">CNN Image Classifier</div>
+          <div class="capstone-metric-row">
+            <div class="capstone-metric-stat">
+              <div class="capstone-metric-num">50.9%</div>
+              <div class="capstone-metric-sub">Accuracy</div>
+            </div>
+            <div class="capstone-metric-stat">
+              <div class="capstone-metric-num">51.4%</div>
+              <div class="capstone-metric-sub">F1-Score</div>
+            </div>
+          </div>
+        </div>
+        <div style="font-size:12px; color:var(--sage-light); font-style:italic; padding: 2px 0;">
+          5-fold cross-validation · 92% accuracy on held-out clinical test datasets
+        </div>
+      </div>
+    </div>
+
+    <!-- P2: AI Resume Screening -->
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-num">02</div>
+        <div class="project-links"><span class="link-pending">GitHub coming soon</span></div>
+      </div>
+      <div class="project-title">AI Resume Screening & Ranking System</div>
+      <ul class="project-bullets">
+        <li>Built SBERT embedding pipelines for semantic resume-JD alignment, boosting ranking accuracy by 35% over keyword matching</li>
+        <li>Implemented similarity scoring to rank candidates by skills and experience, cutting recruiter review time significantly</li>
+        <li>Added explainability layer highlighting matched and missing skills, increasing hiring team confidence in ranked results</li>
+      </ul>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">SBERT</span>
+        <span class="project-tag">spaCy</span>
+        <span class="project-tag">NLP</span>
+        <span class="project-tag">Semantic Search</span>
+      </div>
+    </div>
+
+    <!-- P3: Medical LSH -->
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-num">03</div>
+        <div class="project-links"><a href="https://github.com/Sushmabts/weighted_lsh_case_search/blob/main/readme.md" target="_blank">GitHub ↗</a></div>
+      </div>
+      <div class="project-title">Medical Similar Case Search Engine</div>
+      <ul class="project-bullets">
+        <li>Built a similarity engine using Weighted LSH and vector search on clinical notes, achieving top-3 precision of 88% on benchmarks</li>
+        <li>Designed relational schemas and optimized SQL for large-scale data retrieval, reducing query latency</li>
+        <li>Evaluated retrieval quality using NDCG and MRR metrics; deployed as an interactive Streamlit app</li>
+      </ul>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">SQL</span>
+        <span class="project-tag">LSH / MinHash</span>
+        <span class="project-tag">TF-IDF</span>
+        <span class="project-tag">Data Mining</span>
+        <span class="project-tag">Streamlit</span>
+      </div>
+    </div>
+
+    <!-- P4: Adaptive UI -->
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-num">04</div>
+        <div class="project-links"><a href="https://github.com/Sushmabts/learning-interface-user-study-object-behavioral-data" target="_blank">GitHub ↗</a></div>
+      </div>
+      <div class="project-title">Adaptive Learning Interface vs Static UI</div>
+      <ul class="project-bullets">
+        <li>Built an adaptive React interface personalizing content by real-time user behavior, increasing engagement over static UI</li>
+        <li>Established a shared WCAG-compliant component library, reducing development time across the project</li>
+        <li>Conducted bias-aware user study using click behavior and task completion time — revealed measurable UX improvements</li>
+      </ul>
+      <div class="project-tags">
+        <span class="project-tag">React</span>
+        <span class="project-tag">JavaScript</span>
+        <span class="project-tag">HCI</span>
+        <span class="project-tag">IUI</span>
+        <span class="project-tag">User Research</span>
+      </div>
+    </div>
+
+    <!-- P5: XSS -->
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-num">05</div>
+        <div class="project-links"><span class="link-pending">GitHub coming soon</span></div>
+      </div>
+      <div class="project-title">XSS Attack Simulation & Defense</div>
+      <ul class="project-bullets">
+        <li>Simulated stored and reflected XSS attacks to expose hidden vulnerabilities, reducing application security risk</li>
+        <li>Implemented Content Security Policy and secure HTTP headers, achieving zero post-deployment XSS incidents</li>
+        <li>Documented attack vectors and remediation strategies as a practical web security reference</li>
+      </ul>
+      <div class="project-tags">
+        <span class="project-tag">Web Security</span>
+        <span class="project-tag">XSS</span>
+        <span class="project-tag">CSP</span>
+        <span class="project-tag">HTTP Headers</span>
+        <span class="project-tag">Pen Testing</span>
+      </div>
+    </div>
+
+    <!-- P6: LLM Chatbot -->
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-num">06</div>
+        <div class="project-links"></div>
+      </div>
+      <div class="project-title">Enterprise LLM Chatbot & RAG Pipeline</div>
+      <ul class="project-bullets">
+        <li>Integrated OpenAI APIs and built RAG pipelines with LangChain and vector search for enterprise knowledge retrieval at Virtusa</li>
+        <li>Reduced internal knowledge-search time by 60% across teams in a production Spring Boot environment</li>
+        <li>Designed prompt pipelines and API integration patterns for reliable, low-latency enterprise use</li>
+      </ul>
+      <div class="project-tags">
+        <span class="project-tag">OpenAI</span>
+        <span class="project-tag">LangChain</span>
+        <span class="project-tag">RAG</span>
+        <span class="project-tag">Spring Boot</span>
+        <span class="project-tag">Java</span>
+      </div>
+    </div>
+
+    <!-- P7: Portfolio -->
+    <div class="project-card">
+      <div class="project-top">
+        <div class="project-num">07</div>
+        <div class="project-links"><a href="https://sushma-ravichandran.vercel.app/" target="_blank">Live ↗</a></div>
+      </div>
+      <div class="project-title">Personal Portfolio Website</div>
+      <ul class="project-bullets">
+        <li>Designed and built a production-deployed portfolio with a modern frontend stack, hosted on Vercel</li>
+        <li>Fully responsive design showcasing projects, experience, and skills</li>
+      </ul>
+      <div class="project-tags">
+        <span class="project-tag">React</span>
+        <span class="project-tag">Frontend</span>
+        <span class="project-tag">Vercel</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">// skills</div>
+  <h2>Tools & technologies</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Languages</div>
+      <ul class="skill-list">
+        <li>Java</li>
+        <li>Python</li>
+        <li>JavaScript / TypeScript</li>
+        <li>C# / .NET</li>
+        <li>SQL / PL-SQL</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Backend & APIs</div>
+      <ul class="skill-list">
+        <li>Spring Boot / Spring MVC</li>
+        <li>ASP.NET</li>
+        <li>REST APIs / GraphQL</li>
+        <li>Node.js</li>
+        <li>Microservices</li>
+        <li>Kafka · Prometheus · Grafana</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Frontend</div>
+      <ul class="skill-list">
+        <li>React / Angular</li>
+        <li>D3.js / Material UI</li>
+        <li>HTML5 / CSS3</li>
+        <li>Streamlit</li>
+        <li>Django</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">AI / ML</div>
+      <ul class="skill-list">
+        <li>LLM Integration / RAG</li>
+        <li>LangChain · SBERT · spaCy</li>
+        <li>CNN / Deep Learning</li>
+        <li>Scikit-learn / TensorFlow</li>
+        <li>Prompt Engineering</li>
+        <li>NLP / Data Mining</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Cloud & DevOps</div>
+      <ul class="skill-list">
+        <li>AWS (EC2, S3, Lambda, RDS, EKS)</li>
+        <li>Docker / Kubernetes</li>
+        <li>Jenkins / GitHub Actions</li>
+        <li>Terraform / CI-CD</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Databases & Security</div>
+      <ul class="skill-list">
+        <li>MySQL / PostgreSQL / Oracle</li>
+        <li>MongoDB / SQLite</li>
+        <li>JWT / RBAC / Spring Security</li>
+        <li>XSS / CSP / Web Security</li>
+        <li>ISTQB · JUnit · Mockito</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">// contact</div>
+  <h2>Let's connect</h2>
+  <p class="contact-sub">
+    I'm actively looking for full-time Software Engineering roles and open to relocate anywhere in the US. My inbox is open.
+  </p>
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:ravichandransushma4@gmail.com">Email</a>
+    <a class="contact-link" href="https://www.linkedin.com/in/sushmaravichandran" target="_blank">LinkedIn</a>
+    <a class="contact-link" href="https://github.com/Sushmabts" target="_blank">GitHub</a>
+    <a class="contact-link" href="https://sushma-ravichandran.vercel.app/" target="_blank">Portfolio</a>
+    <a class="contact-link" href="Sushma_Ravichandran_Resume.pdf" download="Sushma_Ravichandran_Resume.pdf">↓ Download Resume</a>
+  </div>
+</section>
+
+<footer>Sushma Ravichandran · 2025 · Open to Relocate · US</footer>
+
+</body>
+</html>
