@@ -289,7 +289,55 @@
   .timeline-bullets li { font-size: 14px; color: var(--ink-mid); padding-left: 14px; position: relative; line-height: 1.6; }
   .timeline-bullets li::before { content: '–'; position: absolute; left: 0; color: var(--sage); }
 
+  /* FILTER BUTTONS */
+  .project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .filter-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1.5px solid var(--ivory-mid);
+    background: var(--white);
+    color: var(--ink-dim);
+    cursor: pointer;
+    transition: all 0.18s;
+    letter-spacing: 0.04em;
+  }
+
+  .filter-btn:hover { border-color: var(--forest); color: var(--forest); }
+  .filter-btn.active { background: var(--forest); border-color: var(--forest); color: var(--white); }
+
+  .cat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .cat-aiml      { background: rgba(184,92,56,0.12);   color: #B85C38; border: 1px solid rgba(184,92,56,0.3); }
+  .cat-fullstack { background: rgba(26,53,38,0.1);     color: #1A6640; border: 1px solid rgba(26,53,38,0.25); }
+  .cat-data      { background: rgba(59,100,160,0.1);   color: #3B64A0; border: 1px solid rgba(59,100,160,0.25); }
+  .cat-uiux      { background: rgba(120,80,160,0.1);   color: #7850A0; border: 1px solid rgba(120,80,160,0.25); }
+  .cat-security  { background: rgba(160,60,60,0.1);    color: #A03C3C; border: 1px solid rgba(160,60,60,0.25); }
+
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
+
+  .project-card.hidden,
+  .project-card-capstone.hidden { display: none; }
 
   .project-card-capstone {
     grid-column: 1 / -1;
@@ -554,10 +602,21 @@
 <section id="projects">
   <div class="section-label">// projects</div>
   <h2>Things I've built</h2>
+
+  <!-- FILTER BUTTONS -->
+  <div class="project-filters">
+    <button class="filter-btn active" onclick="filterProjects('all', this)">All</button>
+    <button class="filter-btn" onclick="filterProjects('ai-ml', this)">AI / ML</button>
+    <button class="filter-btn" onclick="filterProjects('full-stack', this)">Full Stack</button>
+    <button class="filter-btn" onclick="filterProjects('data', this)">Data Analysis</button>
+    <button class="filter-btn" onclick="filterProjects('ui-ux', this)">UI / UX</button>
+    <button class="filter-btn" onclick="filterProjects('security', this)">Security</button>
+  </div>
+
   <div class="projects-grid">
 
     <!-- CAPSTONE -->
-    <div class="project-card-capstone">
+    <div class="project-card-capstone" data-cat="ai-ml">
       <div>
         <div class="capstone-badge">★ MS Capstone · UW-Milwaukee 2025</div>
         <div class="capstone-title">Multimodal ECG-Based Heart Disease Prediction</div>
@@ -632,7 +691,8 @@
     </div>
 
     <!-- P2: AI Resume Screening -->
-    <div class="project-card">
+    <div class="project-card" data-cat="ai-ml">
+      <span class="cat-badge cat-aiml">&#9679; AI / ML</span>
       <div class="project-top">
         <div class="project-num">02</div>
         <div class="project-links"><span class="link-pending">GitHub coming soon</span></div>
@@ -653,7 +713,8 @@
     </div>
 
     <!-- P3: Medical LSH -->
-    <div class="project-card">
+    <div class="project-card" data-cat="ai-ml">
+      <span class="cat-badge cat-aiml">&#9679; AI / ML</span>
       <div class="project-top">
         <div class="project-num">03</div>
         <div class="project-links"><a href="https://github.com/Sushmabts/weighted_lsh_case_search/blob/main/readme.md" target="_blank">GitHub ↗</a></div>
@@ -675,7 +736,8 @@
     </div>
 
     <!-- P4: Adaptive UI -->
-    <div class="project-card">
+    <div class="project-card" data-cat="full-stack">
+      <span class="cat-badge cat-fullstack">&#9679; Full Stack</span>
       <div class="project-top">
         <div class="project-num">04</div>
         <div class="project-links"><a href="https://github.com/Sushmabts/learning-interface-user-study-object-behavioral-data" target="_blank">GitHub ↗</a></div>
@@ -696,7 +758,8 @@
     </div>
 
     <!-- P5: XSS -->
-    <div class="project-card">
+    <div class="project-card" data-cat="security">
+      <span class="cat-badge cat-security">&#9679; Security</span>
       <div class="project-top">
         <div class="project-num">05</div>
         <div class="project-links"><span class="link-pending">GitHub coming soon</span></div>
@@ -717,7 +780,8 @@
     </div>
 
     <!-- P6: LLM Chatbot -->
-    <div class="project-card">
+    <div class="project-card" data-cat="full-stack">
+      <span class="cat-badge cat-fullstack">&#9679; Full Stack</span>
       <div class="project-top">
         <div class="project-num">06</div>
         <div class="project-links"></div>
@@ -738,7 +802,8 @@
     </div>
 
     <!-- P7: Employee Turnover Analysis -->
-    <div class="project-card">
+    <div class="project-card" data-cat="data">
+      <span class="cat-badge cat-data">&#9679; Data Analysis</span>
       <div class="project-top">
         <div class="project-num">07</div>
         <div class="project-links"><a href="https://github.com/Sushmabts/Employee-turnover-Analysis-main" target="_blank">GitHub ↗</a></div>
@@ -761,7 +826,8 @@
     </div>
 
     <!-- P8: Emergency Response App UI/UX -->
-    <div class="project-card">
+    <div class="project-card" data-cat="ui-ux">
+      <span class="cat-badge cat-uiux">&#9679; UI / UX</span>
       <div class="project-top">
         <div class="project-num">08</div>
         <div class="project-links"><a href="https://www.figma.com/proto/tdfRvzgmqMKTuKge22vKMH/Project?node-id=88-66&starting-point-node-id=88%3A66&t=QT1ANmaYBIaBVCat-1" target="_blank">Figma Prototype ↗</a></div>
@@ -782,7 +848,8 @@
     </div>
 
     <!-- P9: Portfolio -->
-    <div class="project-card">
+    <div class="project-card" data-cat="full-stack">
+      <span class="cat-badge cat-fullstack">&#9679; Full Stack</span>
       <div class="project-top">
         <div class="project-num">09</div>
         <div class="project-links"><a href="https://sushma-ravichandran.vercel.app/" target="_blank">Live ↗</a></div>
@@ -859,6 +926,40 @@
       </ul>
     </div>
     <div class="skill-group">
+      <div class="skill-group-title">Data Engineering</div>
+      <ul class="skill-list">
+        <li>Apache Kafka</li>
+        <li>ETL Pipelines</li>
+        <li>Feature Engineering</li>
+        <li>AWS (S3, RDS, Lambda)</li>
+        <li>PostgreSQL / Oracle</li>
+        <li>Prometheus / Grafana</li>
+        <li>Data Pipeline Design</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">BI & Visualization</div>
+      <ul class="skill-list">
+        <li>Power BI</li>
+        <li>Tableau</li>
+        <li>D3.js</li>
+        <li>Seaborn / Matplotlib</li>
+        <li>Pandas / NumPy</li>
+        <li>Data Analysis (EDA)</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Design & UX</div>
+      <ul class="skill-list">
+        <li>Figma</li>
+        <li>Wireframing</li>
+        <li>Prototyping</li>
+        <li>UI/UX Design</li>
+        <li>Accessibility (WCAG)</li>
+        <li>Mobile Design</li>
+      </ul>
+    </div>
+    <div class="skill-group">
       <div class="skill-group-title">Databases & Security</div>
       <ul class="skill-list">
         <li>MySQL / PostgreSQL / Oracle</li>
@@ -889,5 +990,22 @@
 
 <footer>Sushma Ravichandran · 2025 · Open to Relocate · US</footer>
 
+
+<script>
+function filterProjects(cat, btn) {
+  // update active button
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  // show/hide cards
+  document.querySelectorAll('.projects-grid [data-cat]').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+</script>
 </body>
 </html>
